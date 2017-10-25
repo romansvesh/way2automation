@@ -2,12 +2,17 @@
 
 import pickle
 from pathlib import Path
+
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
+from MainPage import GRAVATAR, BUTTON_LOGIN
 from Variables import *
-from Locators import *
+
+
+
 
 
 class BasePage:
@@ -34,9 +39,10 @@ class BasePage:
 
 
 class MainPage(BasePage):
-    def press_button_sign_in(self):
-        element = self.driver.find_element(By.XPATH, BUTTON_LOGIN)
-        element.click()
+    # Locators
+    INPUT_EMAIL = '//*[@id="user_email"]'
+    INPUT_PASSWORD = '//*[@id="user_password"]'
+    BUTTON_SUBMIT = '//*[@type="submit"]'
 
     def fill_email(self):
         self.wait_for_element(INPUT_EMAIL)
@@ -51,16 +57,7 @@ class MainPage(BasePage):
         element = self.driver.find_element(By.XPATH, BUTTON_SUBMIT)
         element.click()
 
-    def log_in(self):
-        if not Path(COOKIES_FILE_NAME).exists():
-            self.press_button_sign_in()
-            self.fill_email()
-            self.fill_password()
-            self.press_button_submit()
-            self.wait_for_element(GRAVATAR)
-            self.save_cookies(COOKIES_FILE_NAME)
-        else:
-            self.login_with_cookies(COOKIES_FILE_NAME)
+
 
     def gravatar_presence(self):
         try:
@@ -68,3 +65,5 @@ class MainPage(BasePage):
         except NoSuchElementException:
             return False
         return True
+
+
