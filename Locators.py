@@ -1,0 +1,5 @@
+BUTTON_LOGIN = '//header//*[contains(@href,"sign_in")]'
+INPUT_EMAIL = '//*[@id="user_email"]'
+INPUT_PASSWORD = '//*[@id="user_password"]'
+BUTTON_SUBMIT = '//*[@type="submit"]'
+GRAVATAR = '//*[@id="navbar"]//*[@class="gravatar"]//parent::*'
