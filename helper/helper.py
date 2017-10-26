@@ -3,20 +3,12 @@
 import pickle
 import os
 from pathlib import Path
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
 from constants import constants
 
 
-class BasePage:
+class Helper:
     def __init__(self, driver):
         self._driver = driver
-
-    def wait_for_element(self, locator):
-        """This wait the element"""
-        wait = WebDriverWait(self._driver, 5)
-        wait.until(EC.element_to_be_clickable((By.XPATH, locator)))
 
     def save_cookie(self):
         """This save cookies into file"""
