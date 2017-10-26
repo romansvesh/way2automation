@@ -2,7 +2,7 @@
 
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
-from POM.BasePage import BasePage
+from pom.base_page import BasePage
 
 
 class MainPage(BasePage):
@@ -11,12 +11,12 @@ class MainPage(BasePage):
     GRAVATAR = '//*[@id="navbar"]//*[@class="gravatar"]//parent::*'  # After SignIn
 
     def press_button_sign_in(self):
-        element = self.driver.find_element(By.XPATH, self.BUTTON_LOGIN)
+        element = self._driver.find_element(By.XPATH, self.BUTTON_LOGIN)
         element.click()
 
     def gravatar_presence(self):
         try:
-            self.driver.find_element(By.XPATH, self.GRAVATAR)
+            self._driver.find_element(By.XPATH, self.GRAVATAR)
         except NoSuchElementException:
             return False
         return True
