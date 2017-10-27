@@ -7,16 +7,16 @@ from helper.helper import Helper
 
 class MainPage(Helper):
     # Locators
-    BUTTON_LOGIN = '//a[contains(@href,"sign_in")]'  # Before SignIn
-    GRAVATAR = 'gravatar'  # After SignIn
+    BUTTON_LOGIN = (By.XPATH, '//a[contains(@href,"sign_in")]')  # Before SignIn
+    GRAVATAR = (By.CLASS_NAME, 'gravatar')  # After SignIn
 
     def press_button_sign_in(self):
-        element = self._driver.find_element(By.XPATH, self.BUTTON_LOGIN)
+        element = self._driver.find_element(*self.BUTTON_LOGIN)
         element.click()
 
     def gravatar_presence(self):
         try:
-            self._driver.find_element_by_class_name(self.GRAVATAR)
+            self._driver.find_element(*self.GRAVATAR)
         except NoSuchElementException:
             return False
         return True
